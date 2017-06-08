@@ -5,9 +5,8 @@ var fs = require('fs');
 var FdfsClient = require('../index.js');
 
 var fdfs = new FdfsClient({
-    trackers: [
-        {
-            host: '192.168.0.23',
+    trackers: [{
+            host: '192.168.40.20',
             port: 22122
         },
         //{
@@ -70,7 +69,7 @@ describe('test fdfs', function() {
     it('setMetaData', function(done) {
         var fileId = 'group1/M00/00/09/wKgAeFbZnLGAULR6AAPm5H9JxDA474.jpg';
         var meta = {
-            fileName : 'test.jpg',
+            fileName: 'test.jpg',
             fileId: 1234
         };
         fdfs.setMetaData(fileId, meta, 'M').then(function() {
@@ -113,9 +112,9 @@ describe('test fdfs', function() {
         var b2 = buff.slice(10240);
         console.log('buff', buff.length, ', b1:', b1.length, ', b2:', b2.length);
 
-        fdfs.upload(b1, {method: 'uploadAppender', ext: 'jpg'}).then(function(fileId) {
+        fdfs.upload(b1, { method: 'uploadAppender', ext: 'jpg' }).then(function(fileId) {
             console.log('fileId:', fileId);
-            return fdfs.upload(b2, {method: 'append', fileId: fileId});
+            return fdfs.upload(b2, { method: 'append', fileId: fileId });
         }).then(function(r) {
             console.log('append:', r);
             done();
@@ -128,9 +127,9 @@ describe('test fdfs', function() {
         var b1 = buff.slice(0, 10240);
         var b2 = buff.slice(10240);
         console.log('buff', buff.length, ', b1:', b1.length, ', b2:', b2.length);
-        fdfs.upload(b1, {method: 'uploadAppender', ext: 'jpg'}).then(function(fileId) {
+        fdfs.upload(b1, { method: 'uploadAppender', ext: 'jpg' }).then(function(fileId) {
             console.log('fileId:', fileId);
-            return fdfs.upload(b2, {method: 'modify', fileId: fileId, offset: b1.length});
+            return fdfs.upload(b2, { method: 'modify', fileId: fileId, offset: b1.length });
         }).then(function(r) {
             console.log('modify:', r);
             done();

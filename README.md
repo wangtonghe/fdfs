@@ -121,7 +121,9 @@ fdfs.upload('test.gif', {
     // method为modify指定追加的源文件的起始点
     offset: 10240,
     // 上传文件的后缀，不指定则获取file参数的后缀，不含(.)
-    ext: 'jpg'
+    ext: 'jpg',
+    //生成从文件的前缀名
+    prefixName:'_500x500'
 }).then(function(fileId) {
     // fileId 为 group + '/' + filename
     console.log(fileId);
