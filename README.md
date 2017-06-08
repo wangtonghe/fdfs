@@ -2,6 +2,12 @@
 
 [FastDFS](https://github.com/happyfish100/fastdfs) 是分布式文件存储系统。这个项目是FastDFS的NodeJS客户端，用来与FastDFS Server进行交互，进行文件的相关操作。我测试过的server版本是4.0.6。
 
+
+## 与原项目区别
+
+添加了对主从文件的处理。针对原图和缩略图的关联。方法是`uploadSalve`,可传参数`prefixName`, 表示从文件前缀。具体可见`testfdfs.js`。
+
+
 # 安装
 
 ```shell
